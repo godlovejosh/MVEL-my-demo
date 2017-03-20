@@ -14,21 +14,26 @@ import java.util.Map;
 public class TestExpress {
 
     public static void main(String[] args) {
-//        demo01();
+        demo01();
 //        demo02();
 //        demo03();
-        demo04();
+//        demo04();
     }
 
     public static void demo01() {
         String expression = "foobar > 99";
         // Compile the expression.
         Serializable compiled = MVEL.compileExpression(expression);
+        Object scriptObject = MVEL.compileExpression(expression);
         Map vars = new HashMap();
         vars.put("foobar",new Integer(100));
         // Now we execute it.
         Boolean result = (Boolean)MVEL.executeExpression(compiled, vars);
+        Boolean result2 = (Boolean)MVEL.executeExpression(scriptObject, vars);
         if (result.booleanValue()) {
+            System.out.println("Itworks!");
+        }
+        if (result2.booleanValue()) {
             System.out.println("Itworks!");
         }
     }
